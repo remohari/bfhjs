@@ -33,7 +33,7 @@ function charToMorse(alphaChar) {
 
 function convertToMorse(alphabetString) {
     var result = "";
-    alphabetString.split("").forEach(element => {
+    alphabetString.toLowerCase().split("").forEach(element => {
         result += charToMorse(element);
     });
     return result;
