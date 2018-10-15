@@ -1,41 +1,29 @@
-//CounterService
-(function() {
-var i = 0;
-function get() {
-    return i;
+eval("var bla = 12;");
+//Function("bla", "function");
+
+console.log(bla);
+
+function require(name) {
+    var code = new Function("exports", readFile(name));
+    var exports = {};
+    code(exports);
+    return exports;
 };
 
-function increment() {
-    return ++i;
+function readFile(name) {
+    var req = new XMLHttpRequest();
+    req.overrideMimeType("text/javascript");
+    req.open("GET", name + ".js", false);
+    req.send(null);
+    return req.responseText;
 }
-})();
 
 
+//In Node JS ist require bereits implementiert
 
-var counterService = {};
-(function(exports) {
-    var i = 0;
-    exports.get = function get() {
-        return i;
-    };
+var counter = require("counterService");
 
-    exports.increment = function increment() {
-        return ++i;
-    };
-
-})(counterService);
-
-
-
-//How to jquery plugin
-(function($) {
-    var counter = 0;
-    $.fn.identify = function(options) {
-        var settings = $.extend({
-            prefix: 'test-'
-        }, options);
-        this.each(function() {
-            this.id = settings.prefix + (++counter);
-        });
-    };
-})(jQuery);
+counter.increment();
+counter.get();
+counter.increment();
+console.log(counter.get());

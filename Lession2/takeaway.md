@@ -22,6 +22,7 @@ this.alphabet = Object.create(null);
 Mit der Variante von oben wird pro Instanz eine Funktion erzeugt.
 
 Mit dieser Variante wird die Funktion dem Prototype hinzugefügt. Dieser kann auch zur Laufzeit geändert werden und so bei allen Objekte von dem Konstruktor geändert werden. 
+
 ```javascript
  Person.prototype.speak = function (phrase) {                
         console.log(this.name + "says" + phrase);     
@@ -38,9 +39,9 @@ function Student(name, age, university) {
 }
 //Vererbung in JS (Grusig)
 //Oder mit Extends
+//
 Student.prototype = Object.create(Person.prototype);
 Student.prototype.constructor = Student;
-
 
 ```
 
