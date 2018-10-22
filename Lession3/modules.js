@@ -1,7 +1,5 @@
 eval("var bla = 12;");
-//Function("bla", "function");
-
-console.log(bla);
+console.log(bla); //12
 
 function require(name) {
     var code = new Function("exports", readFile(name));
@@ -15,6 +13,7 @@ function readFile(name) {
     req.overrideMimeType("text/javascript");
     req.open("GET", name + ".js", false);
     req.send(null);
+    //cache hinzufügen, damit es max 1 mal geladen wird
     return req.responseText;
 }
 
